@@ -10,3 +10,15 @@ export function getAppointmentsForDay(state, day) {
   }
   return arrayOfAppointments;  
 }
+
+
+export function getInterview(state, interview){
+  if(!interview){
+    return null
+  }
+
+  let interviewObject = {student: interview.student}
+  interviewObject.interviewer = state.interviewers[interview.interviewer]
+
+  return interviewObject;  
+}
