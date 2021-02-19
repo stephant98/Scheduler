@@ -5,62 +5,12 @@ import "components/Application.scss";
 
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview} from "helpers/selectors"
-
-
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   {
-//     id: 3,
-//     time: "2pm",
-//     interview: {
-//       student: "Stephan Truchsess",
-//       interviewer: {
-//         id: 2,
-//         name: "Nicholas Ragonese",
-//         avatar: "https://i.imgur.com/twYrpay.jpg"
-//       }
-//     }
-//   },
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Mike Ackison",
-//       interviewer: {
-//         id: 3,
-//         name: "Francis Borgouin",
-//         avatar: "https://i.imgur.com/T2WwVfS.png"
-//       }
-//     }
-//   },
-//   {
-//     id: 5,
-//     time: "4pm"
-//   }
-// ];
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors"
 
 
 
 export default function Application(props) {
-  // const [day, setDay] = useState("Monday")
-  // const [days, setDays] = useState([])
-  // const [appointments, setAppointments] = useState({})
+
 
   const [state, setState] = useState({
     day: "Monday",
@@ -68,6 +18,10 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   })
+  
+  function bookInterview(id, interview) {
+    console.log("hello bookinterview", id, interview);
+  }
 
   let dailyAppointments = [];
 
@@ -84,8 +38,9 @@ export default function Application(props) {
     })
   }, [])
   dailyAppointments = getAppointmentsForDay(state, state.day)
+  console.log(dailyAppointments)
 
-  console.log(state.interviewers)
+  const dailyInterviewers = getInterviewersForDay(state, state.day)
 
   return (
     <main className="layout">
@@ -109,7 +64,7 @@ export default function Application(props) {
       <section className="schedule">
         {dailyAppointments.map((appointment) => {
           const interview = getInterview(state, appointment.interview)
-          return (<Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} />)
+          return (<Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={dailyInterviewers} bookInterview={bookInterview} />)
         })}
         <Appointment key="last" time="5pm"/>
       </section>
