@@ -17,6 +17,7 @@ export default function Application(props) {
   dailyAppointments = getAppointmentsForDay(state, state.day)
   
   const dailyInterviewers = getInterviewersForDay(state, state.day)
+  
 
   return (
     <main className="layout">
