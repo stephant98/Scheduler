@@ -15,6 +15,7 @@ const CREATE = "CREATE"
 const SAVING = "SAVING";
 const DELETE = "DELETE";
 const CONFIRM = "CONFIRM"
+const EDIT = "EDIT";
 
 
 export default function Appointment(props){
@@ -33,15 +34,17 @@ export default function Appointment(props){
     transition(DELETE)
     props.deleteInterview(props.id).then(() => transition(EMPTY))
   }
+  console.log("props here", props.interview)
 
   return (
   <article className="appointment">
     <Header time={props.time}/>
     {mode === CREATE && <Form interviewers={props.interviewers}  onSave={save} onCancel={back} />}
+    {mode === EDIT && <Form name={props.interview.student} interviewers={props.interviewers} interviewer={props.interview.interviewer.id} onSave={save} onCancel={back} />}
     {mode === SAVING && <Status message="Saving..."/>}
     {mode === CONFIRM && <Confirm message="Are you sure you want to delete?" onConfirm={cancel} onCancel={() => transition(SHOW)}/>}
     {mode === DELETE && <Status message="Deleting..."/>}
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)}/>}
-    {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete={() => transition(CONFIRM)}/>}
+    {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer} onDelete={() => transition(CONFIRM)} onEdit={() => transition(EDIT)}/>}
   </article>)
 }
