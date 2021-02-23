@@ -1,37 +1,36 @@
 export function getAppointmentsForDay(state, day) {
   let arrayOfAppointments = [];
 
-  for(let dayItem of state.days) {
-    if(dayItem.name === day){
-      for(let item of dayItem.appointments) {
-        arrayOfAppointments.push(state.appointments[item])
+  for (let dayItem of state.days) {
+    if (dayItem.name === day) {
+      for (let item of dayItem.appointments) {
+        arrayOfAppointments.push(state.appointments[item]);
       }
     }
   }
-  return arrayOfAppointments;  
+  return arrayOfAppointments;
 }
 
-
-export function getInterview(state, interview){
-  if(!interview){
-    return null
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null;
   }
 
-  let interviewObject = {student: interview.student}
-  interviewObject.interviewer = state.interviewers[interview.interviewer]
+  let interviewObject = { student: interview.student };
+  interviewObject.interviewer = state.interviewers[interview.interviewer];
 
-  return interviewObject;  
+  return interviewObject;
 }
 
 export function getInterviewersForDay(state, day) {
   let arrayOfInterviewers = [];
 
-  for(let dayItem of state.days) {
-    if(dayItem.name === day){
-      for(let item of dayItem.interviewers) {
-        arrayOfInterviewers.push(state.interviewers[item])
+  for (let dayItem of state.days) {
+    if (dayItem.name === day) {
+      for (let item of dayItem.interviewers) {
+        arrayOfInterviewers.push(state.interviewers[item]);
       }
     }
   }
-  return arrayOfInterviewers;  
+  return arrayOfInterviewers;
 }
