@@ -44,7 +44,7 @@ export default function Appointment(props){
   console.log("props here", props.interview)
 
   return (
-  <article className="appointment">
+  <article className="appointment" data-testid="appointment">
     <Header time={props.time}/>
     {mode === CREATE && <Form interviewers={props.interviewers}  onSave={save} onCancel={back} />}
     {mode === EDIT && <Form name={props.interview.student} interviewers={props.interviewers} interviewer={props.interview.interviewer.id} onSave={save} onCancel={back} />}
