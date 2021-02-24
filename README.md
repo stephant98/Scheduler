@@ -51,3 +51,11 @@ npm run storybook
 ```
 
 ## Screenshots
+
+!["Form and Existing interviews"](https://github.com/stephant98/Scheduler/blob/master/docs/Creating-Interview.png?raw=true)
+
+!["Confirm deletion of interview"](https://github.com/stephant98/Scheduler/blob/master/docs/Confirm-deletion.png?raw=true)
+
+!["Interview deletion status"](https://github.com/stephant98/Scheduler/blob/master/docs/Interview-deletion.png?raw=true)
+
+!["Responsive view"](https://github.com/stephant98/Scheduler/blob/master/docs/Responsive-view.png?raw=true)
